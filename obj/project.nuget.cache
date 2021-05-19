@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "w3KB9PaDEb8FArkfxm3W3Dv/JH5bzgfCnQEsRPOqJTuExxvIS/B9iJ2339yZAm4XSmoNTFOzIxTytL7lldt1lA==",
+  "dgSpecHash": "c0MdiRo4F+wTePCumqOpNxwCd5KK1NnmvbN6QkIMCMjjC6urTCDBpJWhETUuYMcORB9AGrx776fFyA2V27h/8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\PortraitBoxPhotoConverter.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\eholy\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\eholy\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\eholy\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
