@@ -16,24 +16,16 @@
 </head>
 <body>
     <div class="text">
-        <h1>Photo Converter</h1>
+        <h1>Portrait Box Image Converter</h1>
     </div>
 
-    <div class="row">
-        <form method="post" enctype="multipart/form-data" asp-controler="PhotoController" asp-action="UploadImage">
-            <input asp-for="PhotoID" type="hidden" />
-            <div class="upload-form">
-                <div class="col-md-10">
-                    <p>Upload Photo</p>
-                    <input asp-for="UploadPhoto" class="form-control" name="files" type="file" />
-                </div>
-            </div>
-            <div class="upload-form">
-                <input class="btn" type="submit" value="Upload" />
-                <button class="btn"><i class="fa fa-download"></i> Download</button>
-            </div>
-        </form>
+    <div class="mainimage">
+        <img id="demofadingimage" src="~/images/1796ca2c-e9b5-4440-8b87-57dd8fa811fa.jpg" width="200">
+    </div>
+    <div class="btn">
+        <button type="button" onclick="location.href='@Url.Action("Index", "Photo")'"> Start Upload</button>
 
     </div>
+        
 </body>
 </html>

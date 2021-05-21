@@ -6,6 +6,7 @@ h1{
     background: -webkit-linear-gradient( red, yellow, blue, violet, white);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin: 50px;
 }
 body {
     

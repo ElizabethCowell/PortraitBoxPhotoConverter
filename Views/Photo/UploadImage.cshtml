@@ -9,7 +9,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -30,17 +30,19 @@
             <div class="upload-form">
                 <input asp-for="UploadPhoto" class="btn" type="submit" value="Upload" />
             </div>
-            <img id="myImage" src="@Model.UploadPhoto" width="50">
+            <img id="myImage" src="@Model.UploadPhoto" width="200">
+            <br />
+            <img id="myImage" src="@Model.InvertedPhoto" width="200">
         </form>
-        <br />
-        <input method="post" asp-controller="PhotoController" asp-action="ConvertImage" asp-for="UploadPhoto" class="btn" type="submit" value="Convert Image" />
-        <br />
-        <img id="myImage" src="//:0">
-        <div>
-            <button class="btn"><i class="fa fa-download"></i> Download</button>
-        </div>
+        <br>
+       
 
     </div>
+    <div>
+        <button class="btn"><i class="fa fa-download"></i> Download</button>
+    </div>
+
+   
 </body>
 </html>
 

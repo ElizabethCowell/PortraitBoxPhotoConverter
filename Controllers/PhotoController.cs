@@ -36,7 +36,7 @@ namespace PortraitBoxPhotoConverter.Controllers
 
                     // Combines two strings into a path.
                     var filepath =
-            new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")).Root + $@"{newFileName}";
+                    new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")).Root + $@"{newFileName}";
 
                     using (FileStream fs = System.IO.File.Create(filepath))
                     {
@@ -49,14 +49,18 @@ namespace PortraitBoxPhotoConverter.Controllers
 
                 }
             }
+
+            var invert = new PhotoConverter();
+
+            //photo.BitmapPhoto = invert.stringToImage(photo.UploadPhoto);
+
+            photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
+
             return View(photo);
 
         }
 
-        public IActionResult ConvertImage(Photo photo)
-        {
-            return View(photo);
-        }
+        
 
     }
 }
