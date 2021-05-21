@@ -39,23 +39,10 @@ namespace PortraitBoxPhotoConverter
         //        return bmpPhoto;
         //    }
         //}
-        public Bitmap InvertImage(string uploadedPhoto)
+        public string InvertImage(string uploadedPhoto)
         {
           
             var photo = (Bitmap) Image.FromFile(@$"C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\wwwroot\\{uploadedPhoto}", true);
-
-            //{
-            //    Image newPhoto = photo;
-            //    ////read image
-            //    Bitmap bmp = new Bitmap(newPhoto, 32 , 32);
-            //    //Bitmap image;
-            //    //using (var ms = new MemoryStream())
-            //    //{
-            //    //    fileUpload1.PostedFile.InputStream.CopyTo(ms);
-            //    //    ms.Position = 0;
-            //    //    image = new System.Drawing.Bitmap(ms);
-            //}
-
 
             //get image dimension
             int width = photo.Width;
@@ -84,12 +71,14 @@ namespace PortraitBoxPhotoConverter
                         photo.SetPixel(x, y, Color.FromArgb(a, r, g, b));
                 }
                 }
+            var ms = new MemoryStream();
 
-                    
-                    //photo.Save("c:\\negative.jpg", ImageFormat.Jpeg);
+            photo.Save(ms, ImageFormat.Jpeg);
+            var invertComplete = Convert.ToBase64String(ms.GetBuffer());
+            //photo.Save("c:\\negative.jpg", ImageFormat.Jpeg);
 
 
-            return photo;
+            return invertComplete;
             
         }
 
