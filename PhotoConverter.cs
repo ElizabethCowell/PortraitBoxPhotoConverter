@@ -24,21 +24,12 @@ namespace PortraitBoxPhotoConverter
             throw new NotImplementedException();
         }
 
-        public string HalfTone(string invertPhoto)
+        public string HalfTone(Bitmap invertPhoto)
         {
+
             throw new NotImplementedException();
         }
 
-        //public Bitmap stringToImage(string inputString)
-        //{
-        //    byte[] imageBytes = Encoding.Unicode.GetBytes(inputString);
-        //    using (MemoryStream ms = new MemoryStream(imageBytes))
-        //    {
-                
-        //        var bmpPhoto = new Bitmap(ms);
-        //        return bmpPhoto;
-        //    }
-        //}
         public string InvertImage(string uploadedPhoto)
         {
           
@@ -71,11 +62,20 @@ namespace PortraitBoxPhotoConverter
                         photo.SetPixel(x, y, Color.FromArgb(a, r, g, b));
                 }
                 }
+                
+
             var ms = new MemoryStream();
 
             photo.Save(ms, ImageFormat.Jpeg);
             var invertComplete = Convert.ToBase64String(ms.GetBuffer());
             //photo.Save("c:\\negative.jpg", ImageFormat.Jpeg);
+            
+            //Convert Base64 Encoded string to Byte Array.
+            //byte[] imageBytes = Convert.FromBase64String(invertComplete);
+
+            ////Save the Byte Array as Image File.
+            //string filePath = Server.MapPath("~/images/" + Path.GetFileName(FileUpload1.PostedFile.FileName));
+            //File.WriteAllBytes(filePath, imageBytes);
 
 
             return invertComplete;

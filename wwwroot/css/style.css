@@ -1,20 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-h1{
+h1 {
     font-family: Lobster;
     font-size: 72px;
-    background: -webkit-linear-gradient( red, yellow, blue, violet, white);
-    -webkit-background-clip: text;
+    background: -webkit-linear-gradient( left, red, orange, yellow, green, blue, violet, white, gray);
     -webkit-text-fill-color: transparent;
-    margin: 50px;
+    -webkit-background-clip: text;
+    margin: 25px;
+    text-align:center;
+}
+/*.parent {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.top {
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}*/
+img.photo {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+    
+}
+.parent {
+    text-align: center;
 }
 body {
-    
     background: #000;
 }
-.upload-form{
+/*.upload-form {
     color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+.row {
+    width: 25%;
+    display: block;
+    align-content: center; 
+    margin-left: auto;
+    margin-right: auto;
 }
-.btn{
+.btn {
     background-color: blue;
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
 }
+.homebutton {
+    background-color: blue;
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+
