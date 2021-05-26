@@ -12,5 +12,6 @@ namespace PortraitBoxPhotoConverter.Models
         public int PhotoID { get; set; }
         public string BitmapPhoto { get; set; }
         public string InvertedPhoto { get; set; }
+        public string DownLoadPhoto { get; set; }
     }
 }

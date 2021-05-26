@@ -26,7 +26,8 @@ namespace PortraitBoxPhotoConverter.Controllers
                     var fileName = Path.GetFileName(files.FileName);
 
                     //Assigning Unique Filename (Guid)
-                    var myUniqueFileName = Convert.ToString(Guid.NewGuid());
+                    //var myUniqueFileName = Convert.ToString(Guid.NewGuid());
+                    var myUniqueFileName = "original";
 
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
@@ -52,9 +53,15 @@ namespace PortraitBoxPhotoConverter.Controllers
 
             var invert = new PhotoConverter();
 
-            //photo.BitmapPhoto = invert.stringToImage(photo.UploadPhoto);
+            
 
             photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
+
+            string newname = "negativephoto";
+
+            invert.SaveImage(photo.InvertedPhoto, newname);
+
+            
 
             return View(photo);
 
