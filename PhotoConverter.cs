@@ -17,43 +17,6 @@ namespace PortraitBoxPhotoConverter
 {
     public class PhotoConverter : IPhotoConverter
     {
-        public string DownloadImage(string finishedPhoto)
-        {
-            var dlPhoto = new Photo();
-            //Convert Base64 Encoded string to Byte Array.
-            //byte[] imageBytes = Convert.FromBase64String(finishedPhoto);
-            //Image image;
-            //using (MemoryStream ms = new MemoryStream(imageBytes))
-            //{
-            //    image = Image.FromStream(ms);
-            //}
-            //image.Save( ImageFormat.Jpeg);
-
-            var fileName = Path.GetFileName(finishedPhoto);
-
-            //Assigning Unique Filename (Guid)
-            var myUniqueFileName = Convert.ToString(Guid.NewGuid());
-
-            //Getting file Extension
-            var fileExtension = Path.GetExtension(fileName);
-
-            // concatenating  FileName + FileExtension
-            var newFileName = String.Concat(myUniqueFileName, fileExtension);
-
-            // Combines two strings into a path.
-            var filepath =
-            new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")).Root + $@"{newFileName}";
-            //using (FileStream fs = System.IO.File.Create(filepath))
-            //{
-            //    finishedPhoto.CopyTo(fs);
-            //    fs.Flush();
-            //}
-            //string filePath = @$"C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\wwwroot\\" ;
-            //File.WriteAllBytes(filePath, imageBytes);
-
-            dlPhoto.PhotoID = 2;
-            return dlPhoto.DownLoadPhoto = "/images/" + newFileName;
-        }
 
         public string Grouping(string halfTonePhoto)
         {
@@ -68,7 +31,7 @@ namespace PortraitBoxPhotoConverter
 
         public string InvertImage(string uploadedPhoto)
         {
-          
+            //convert image to bitmap
             var photo = (Bitmap) Image.FromFile(@$"C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\wwwroot\\{uploadedPhoto}", true);
 
             //get image dimension
@@ -99,38 +62,33 @@ namespace PortraitBoxPhotoConverter
                 }
                 }
                 
-
+            //convert bitmap to base64
             var ms = new MemoryStream();
 
             photo.Save(ms, ImageFormat.Jpeg);
             var invertComplete = Convert.ToBase64String(ms.GetBuffer());
-            //photo.Save("c:\\negative.jpg", ImageFormat.Jpeg);
-
-
-
-
+    
 
             return invertComplete;
             
         }
 
-        public bool SaveImage(string ImgStr, string ImgName)
+        public bool SaveImage(string ImgStr)
         {
-            var path = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")).Root; //Path
-            //+$@"{ImgName}"
+            var path = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")).Root; // create path
             //Check if directory exist
             if (!System.IO.Directory.Exists(path))
             {
                 System.IO.Directory.CreateDirectory(path); //Create directory if it doesn't exist
             }
 
-            string imageName = ImgName + ".jpg";
+            string imageName = "negativephoto" + ".jpg";
 
             //set the image path
             string imgPath = Path.Combine(path, imageName);
-
+            //convert base64 to byte
             byte[] imageBytes = Convert.FromBase64String(ImgStr);
-
+            //save file
             File.WriteAllBytes(imgPath, imageBytes);
 
             return true;

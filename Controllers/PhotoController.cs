@@ -57,11 +57,8 @@ namespace PortraitBoxPhotoConverter.Controllers
 
             photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
 
-            string newname = "negativephoto";
+            invert.SaveImage(photo.InvertedPhoto);
 
-            invert.SaveImage(photo.InvertedPhoto, newname);
-
-            
 
             return View(photo);
 

@@ -12,7 +12,8 @@ namespace PortraitBoxPhotoConverter
         public string InvertImage(string uploadedPhoto);
         public string HalfTone(Bitmap invertPhoto);
         public string Grouping(string halfTonePhoto);
-        public string DownloadImage(string finishedPhoto);
-        
+        public bool SaveImage(string ImgStr);
+
+
     }
 }
