@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
+using MySql.Data.MySqlClient;
 using PortraitBoxPhotoConverter.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace PortraitBoxPhotoConverter.Controllers
 {
     public class PhotoController : Controller
     {
+
         public IActionResult Index()
         {
             return View();
@@ -53,12 +56,9 @@ namespace PortraitBoxPhotoConverter.Controllers
 
             var invert = new PhotoConverter();
 
-            
-
             photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
 
             invert.SaveImage(photo.InvertedPhoto);
-
 
             return View(photo);
 
