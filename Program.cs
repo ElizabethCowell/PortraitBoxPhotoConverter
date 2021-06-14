@@ -29,7 +29,7 @@ namespace PortraitBoxPhotoConverter
 
             var repo = new CustomerRepository(conn);
 
-            repo.InsertOrder("Sam", "Smith", "email@email.com", "555-555-5555", "small", "1234 house st", "Columbus", "OH", 43215, 12.50);
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

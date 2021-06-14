@@ -1,0 +1,23 @@
+﻿@model Billing 
+<!--this is where the customer will create their product and submit to the database-->
+<body>
+    <form method="post" enctype="multipart/form-data" asp-controler="CustomerController" asp-action="AddProductToDatabase">
+        <div class="formfont">
+            <input asp-for="Price" type="radio" id="small" name="size" value="70.00">
+            <label for="small">Small $70.00</label><br>
+            <input asp-for="Price" type="radio" id="medium" name="size" value="100.00">
+            <label for="medium">Medium $100.00</label><br>
+            <input asp-for="Price" type="radio" id="large" name="size" value="150.00">
+            <label for="large">Large $150.00</label><br />
+            <label for="address">Street Address:</label><br>
+            <input asp-for="Address" type="text" id="address" name="address"><br>
+            <label for="city">City:</label><br>
+            <input asp-for="City" type="text" id="City" name="city"><br>
+            <label for="state">State:</label><br>
+            <input asp-for="State" type="text" id="state" name="state"><br>
+            <label for="zip">Zipe Code:</label><br>
+            <input asp-for="ZipCode" type="text" id="zip" name="zip"><br>
+            <input class="btn" type="submit" value="Submit">
+            </div>
+    </form>
+</body>

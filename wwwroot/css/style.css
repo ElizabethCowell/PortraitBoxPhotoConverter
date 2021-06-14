@@ -36,6 +36,7 @@ img.photo {
 }
 body {
     background: #000;
+    color: white;
 }
 /*.upload-form {
     color: white;
@@ -65,5 +66,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     border-radius: 8px;
+}
+.formfont{
+    color: white;
 }
 

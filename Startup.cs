@@ -35,6 +35,7 @@ namespace PortraitBoxPhotoConverter
             //when the application starts - AddTransient will inject the needed CustomerRepository dependency to the Controllers
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             
+            
             services.AddControllersWithViews();
         }
 

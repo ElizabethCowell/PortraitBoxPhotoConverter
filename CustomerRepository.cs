@@ -14,38 +14,40 @@ namespace PortraitBoxPhotoConverter
         {
             _connection = connection;
         }
-        public void DeleteOrder(Customer id)
+
+        public String GetTimestamp(DateTime value)
         {
-            throw new NotImplementedException();
+            return value.ToString("yyyyMMdd");
+        }
+        public void AddOrder(Customer id, string size, DateTime timeStamp, string photo)
+        {
+            
+            string createProduct = "INSERT INTO products (CustomerID, Size, DateOrdered, Image) VALUE (@newCustomerID, @newSize, @newDateOrdered, @newImage)";
+            _connection.Execute (createProduct, new { newCustomerID = id, newSize = size, newDateOrdered = timeStamp, newImage = photo});
+
         }
 
-        public Customer GetOrder(int id)
+        public int GetCustomerID()
         {
-            throw new NotImplementedException();
+           var customer = _connection.QuerySingleOrDefault<Customer>("SELECT CustomerID FROM customers ORDER BY CustomerID DESC LIMIT 1;");
+            
+
+            return customer.CustomerID; 
         }
 
-        public void InsertOrder(string firstName, string lastName, string email, string phone, string size, string address, string city, string state, int zipCode, double price)
+        public void AddCustomer(Customer customer)
         {
+            Customer id = new Customer();
             string addCustomer = "INSERT INTO customers ( FirstName, LastName, Email, PhoneNumber) VALUE (@newFirstName, @newLastName, @newEmail, @newPhone);";
-            string billingInfo = "INSERT INTO billing (Price, FirstName, LastName, Address, City, State, ZipCode, PhoneNumber) VALUE (@newPrice, @newFirstName, @newLastName, @newAddress, @newCity, @newState, @newZipCode, @newPhone)";
-            string createProduct = "INSERT INTO products (LastName, Size) VALUE (@newLastName, @newSize)";
-
-            //_connection.Open();
-            //using (var transaction = _connection.BeginTransaction())
-            //{
-                _connection.Execute(addCustomer, new { newFirstName = firstName, newLastName = lastName, newEmail = email, newPhone = phone });
-                _connection.Execute(billingInfo, new { newPrice = price, newFirstName = firstName, newLastName = lastName, newAddress = address, newCity = city, newState = state, newZipCode = zipCode, newPhone = phone });
-                _connection.Execute (createProduct, new { newLastName = lastName, newSize = size });
-
-            //    transaction.Commit();
-
-            //}       
-
+            //id.CustomerID = Convert.ToInt32(_connection.ExecuteScalar(addCustomer, new { newFirstName = customer.FirstName, newLastName = customer.LastName, newEmail = customer.Email, newPhone = customer.PhoneNumber }));
+            
+            _connection.Execute(addCustomer, new { newFirstName = customer.FirstName, newLastName = customer.LastName, newEmail = customer.Email, newPhone = customer.PhoneNumber });
         }
 
-        public void UpdateOrder(Customer id)
+        public void AddBilling(Customer id, string address, string city, string state, int zipCode, double price)
         {
-            throw new NotImplementedException();
+            string billingInfo = "INSERT INTO billing (CustomerID, Price, Address, City, State, ZipCode) VALUE (@newCustomerID @newPrice, @newAddress, @newCity, @newState, @newZipCode)";
+            _connection.Execute(billingInfo, new { newCustomerID = id, newPrice = price, newAddress = address, newCity = city, newState = state, newZipCode = zipCode});
         }
     }
 }

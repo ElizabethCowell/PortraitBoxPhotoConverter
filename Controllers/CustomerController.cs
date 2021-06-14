@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PortraitBoxPhotoConverter.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,42 @@ namespace PortraitBoxPhotoConverter.Controllers
         {
             _repo = repo;
         }
+
         public ActionResult Index()
         {
-            _repo.InsertOrder("Sam", "Smith", "email@email.com", "555-555-5555", "small", "1234 house st", "Columbus", "OH", 43215, 12.50);
+            //this is where they will fill out their name, etc
+            return View();
+        }
+       
+        public IActionResult AddCustomer(Customer customer)
+        {
             
+            _repo.AddCustomer(customer);
+            customer.CustomerID = _repo.GetCustomerID();
+            
+
+            ////DateTime dateTime = _repo.GetTimestamp(DateTime.Now);
+            //return View(customer);
+            return RedirectToAction("CreateProduct");
+        }
+
+        public IActionResult CreateProduct(Customer customer)
+        {
+            return View(customer);
+        }
+       
+        public IActionResult AddProductToDatabase()
+        {
             return View();
         }
 
-       
-       
+
+        //public IActionResult Something(Customer a)
+        //{
+        //    CustomerView info = new CustomerView();
+        //    info.NewCustomer = a;
+        //    return View(info);
+        //}
+
     }
 }
