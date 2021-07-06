@@ -60,7 +60,9 @@ namespace PortraitBoxPhotoConverter.Controllers
 
             photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
 
-            photo.DitherPhoto = invert.DoDithering(photo.InvertedPhoto);
+            photo.GrayScale = invert.GrayScale(photo.InvertedPhoto);
+
+            photo.DitherPhoto = invert.Halftone(photo.GrayScale);
 
             invert.SaveImage(photo.DitherPhoto);
 

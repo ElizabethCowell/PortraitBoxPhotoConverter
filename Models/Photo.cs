@@ -13,5 +13,6 @@ namespace PortraitBoxPhotoConverter.Models
         public string DitherPhoto { get; set; }
         public Bitmap InvertedPhoto { get; set; }
         public string DownLoadPhoto { get; set; }
+        public Bitmap GrayScale { get; set; }
     }
 }

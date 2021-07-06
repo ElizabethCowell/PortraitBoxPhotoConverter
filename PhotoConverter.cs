@@ -23,7 +23,7 @@ namespace PortraitBoxPhotoConverter
             throw new NotImplementedException();
         }
 
-        public string DoDithering(Bitmap photo)
+        public Bitmap GrayScale(Bitmap photo)
 
         {
             ////convert image to bitmap
@@ -32,7 +32,7 @@ namespace PortraitBoxPhotoConverter
             int width = photo.Width;
             int height = photo.Height;
 
-            //negative
+            //cycle through pixels
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -53,14 +53,14 @@ namespace PortraitBoxPhotoConverter
                     photo.SetPixel(x, y, Color.FromArgb(a, avg, avg, avg));
                 }
             }
-            var ms = new MemoryStream();
 
-            photo.Save(ms, ImageFormat.Jpeg);
-            var invertComplete = Convert.ToBase64String(ms.GetBuffer());
+            
 
 
-            return invertComplete;
+            return photo;
         }
+
+
 
         public Bitmap InvertImage(string uploadedPhoto)
         {
@@ -128,5 +128,61 @@ namespace PortraitBoxPhotoConverter
             return true;
         }
 
+        public string Halftone(Bitmap photo)
+        {
+            int width = photo.Width;
+            int height = photo.Height;
+
+            //cycle through pixels
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    //get pixel value
+                    Color p = photo.GetPixel(x, y);
+
+                    //cycle through pixels in 4X4 grid 
+                    if (x % 2 == 0 && y % 2 == 0)
+                    {
+                        if (p.R > 64)
+                        {
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                        }
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                    }
+                    if (x % 2 == 0 && y % 2 != 0)
+                    {
+                        if (p.R > 128)
+                        {
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                        }
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                    }
+                    if (x % 2 != 0 && y % 2 == 0)
+                    {
+                        if (p.R > 192)
+                        {
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                        }
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                    }
+                    if (x % 2 != 0 && y % 2 != 0)
+                    {
+                        if (p.R > 64)
+                        {
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                        }
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                    }
+                }
+            }
+
+                    var ms = new MemoryStream();
+
+            photo.Save(ms, ImageFormat.Jpeg);
+            var invertComplete = Convert.ToBase64String(ms.GetBuffer());
+            
+                return invertComplete;
+        }
     }
 }
