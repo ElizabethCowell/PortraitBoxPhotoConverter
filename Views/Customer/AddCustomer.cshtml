@@ -1,7 +1,7 @@
-﻿@model Billing 
+﻿@model Customer 
 <!--this is where the customer will create their product and submit to the database-->
 <body>
-    <form method="post" enctype="multipart/form-data" asp-controler="CustomerController" asp-action="AddProductToDatabase">
+    <form method="post" enctype="multipart/form-data" asp-controler="CustomerController" asp-action="CreateProduct">
         <div class="formfont">
             <input asp-for="Price" type="radio" id="small" name="size" value="70.00">
             <label for="small">Small $70.00</label><br>

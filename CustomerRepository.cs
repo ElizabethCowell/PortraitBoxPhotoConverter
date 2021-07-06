@@ -44,10 +44,10 @@ namespace PortraitBoxPhotoConverter
             _connection.Execute(addCustomer, new { newFirstName = customer.FirstName, newLastName = customer.LastName, newEmail = customer.Email, newPhone = customer.PhoneNumber });
         }
 
-        public void AddBilling(Customer id, string address, string city, string state, int zipCode, double price)
+        public void AddBilling(Customer customer)
         {
             string billingInfo = "INSERT INTO billing (CustomerID, Price, Address, City, State, ZipCode) VALUE (@newCustomerID @newPrice, @newAddress, @newCity, @newState, @newZipCode)";
-            _connection.Execute(billingInfo, new { newCustomerID = id, newPrice = price, newAddress = address, newCity = city, newState = state, newZipCode = zipCode});
+            _connection.Execute(billingInfo, new { newCustomerID = customer.CustomerID, newPrice = customer.Price, newAddress = customer.Address, newCity = customer.City, newState = customer.State, newZipCode = customer.ZipCode});
         }
     }
 }

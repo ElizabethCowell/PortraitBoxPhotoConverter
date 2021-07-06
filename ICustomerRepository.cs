@@ -11,6 +11,6 @@ namespace PortraitBoxPhotoConverter
         public String GetTimestamp(DateTime value);
         public void AddCustomer (Customer customer);
         public void AddOrder(Customer id, string size, DateTime timeStamp, string photo);
-        public void AddBilling(Customer id, string address, string city, string state, int zipCode, double price);
+        public void AddBilling(Customer customer);
     }
 }

@@ -26,19 +26,19 @@ namespace PortraitBoxPhotoConverter.Controllers
        
         public IActionResult AddCustomer(Customer customer)
         {
-            
+            // customer is added customer ID is returned 
             _repo.AddCustomer(customer);
             customer.CustomerID = _repo.GetCustomerID();
             
 
             ////DateTime dateTime = _repo.GetTimestamp(DateTime.Now);
-            //return View(customer);
-            return RedirectToAction("CreateProduct");
+            return View(customer);
         }
 
         public IActionResult CreateProduct(Customer customer)
         {
-            return View(customer);
+            _repo.AddBilling(customer);
+            return View();
         }
        
         public IActionResult AddProductToDatabase()

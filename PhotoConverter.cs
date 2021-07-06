@@ -23,10 +23,58 @@ namespace PortraitBoxPhotoConverter
             throw new NotImplementedException();
         }
 
-        public string HalfTone(Bitmap invertPhoto)
-        {
+        public Bitmap DoDithering(Bitmap photo)
 
-            throw new NotImplementedException();
+        {
+            //get image dimension
+            int width = photo.Width;
+            int height = photo.Height;
+
+            //negative
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    //get pixel value
+                    Color p = photo.GetPixel(x, y);
+
+                    //extract ARGB value from p
+                    int a = p.A;
+                    int r = p.R;
+                    int g = p.G;
+                    int b = p.B;
+
+                    
+                    //calculate new argb 
+                    if (a > 64)
+                    {
+                        a = 000;
+                    }
+                    else a = 255;
+
+                    if (r > 128)
+                    {
+                        r = 000;
+                    }
+                    else r = 255;
+
+                    if (g > 192)
+                    {
+                        g = 000;
+                    }
+                    else g = 255;
+
+                    if (b > 0)
+                    {
+                        b = 000;
+                    }
+                    else b = 255;
+
+
+                    //set new ARGB value in pixel
+                    photo.SetPixel(x, y, Color.FromArgb(a, r, g, b));
+                }
+            }
         }
 
         public string InvertImage(string uploadedPhoto)
