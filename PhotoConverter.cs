@@ -23,9 +23,11 @@ namespace PortraitBoxPhotoConverter
             throw new NotImplementedException();
         }
 
-        public Bitmap DoDithering(Bitmap photo)
+        public string DoDithering(Bitmap photo)
 
         {
+            ////convert image to bitmap
+            //var photo = (Bitmap)Image.FromFile(@$"C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\wwwroot\\{uploadedPhoto}", true);
             //get image dimension
             int width = photo.Width;
             int height = photo.Height;
@@ -44,40 +46,23 @@ namespace PortraitBoxPhotoConverter
                     int g = p.G;
                     int b = p.B;
 
-                    
-                    //calculate new argb 
-                    if (a > 64)
-                    {
-                        a = 000;
-                    }
-                    else a = 255;
-
-                    if (r > 128)
-                    {
-                        r = 000;
-                    }
-                    else r = 255;
-
-                    if (g > 192)
-                    {
-                        g = 000;
-                    }
-                    else g = 255;
-
-                    if (b > 0)
-                    {
-                        b = 000;
-                    }
-                    else b = 255;
-
-
-                    //set new ARGB value in pixel
-                    photo.SetPixel(x, y, Color.FromArgb(a, r, g, b));
+                    //find avg of rgb to grayscale image
+                    int avg = (r + g + b) / 3;
+                   
+                    //set new ARGB value in pixel to create grayscale
+                    photo.SetPixel(x, y, Color.FromArgb(a, avg, avg, avg));
                 }
             }
+            var ms = new MemoryStream();
+
+            photo.Save(ms, ImageFormat.Jpeg);
+            var invertComplete = Convert.ToBase64String(ms.GetBuffer());
+
+
+            return invertComplete;
         }
 
-        public string InvertImage(string uploadedPhoto)
+        public Bitmap InvertImage(string uploadedPhoto)
         {
             //convert image to bitmap
             var photo = (Bitmap) Image.FromFile(@$"C:\\Users\\eholy\\repos\\PortraitBoxPhotoConverter\\wwwroot\\{uploadedPhoto}", true);
@@ -109,15 +94,16 @@ namespace PortraitBoxPhotoConverter
                         photo.SetPixel(x, y, Color.FromArgb(a, r, g, b));
                 }
                 }
-                
+
             //convert bitmap to base64
-            var ms = new MemoryStream();
+            //var ms = new MemoryStream();
 
-            photo.Save(ms, ImageFormat.Jpeg);
-            var invertComplete = Convert.ToBase64String(ms.GetBuffer());
-    
+            //photo.Save(ms, ImageFormat.Jpeg);
+            //var invertComplete = Convert.ToBase64String(ms.GetBuffer());
 
-            return invertComplete;
+
+            //return invertComplete;
+            return photo;
             
         }
 

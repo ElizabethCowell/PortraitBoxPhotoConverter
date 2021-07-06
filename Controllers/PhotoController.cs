@@ -56,9 +56,13 @@ namespace PortraitBoxPhotoConverter.Controllers
 
             var invert = new PhotoConverter();
 
+            //photo.DitherPhoto = invert.DoDithering(photo.UploadPhoto);
+
             photo.InvertedPhoto = invert.InvertImage(photo.UploadPhoto);
 
-            invert.SaveImage(photo.InvertedPhoto);
+            photo.DitherPhoto = invert.DoDithering(photo.InvertedPhoto);
+
+            invert.SaveImage(photo.DitherPhoto);
 
             return View(photo);
 

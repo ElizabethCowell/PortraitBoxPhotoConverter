@@ -9,9 +9,9 @@ namespace PortraitBoxPhotoConverter
 {
     public interface IPhotoConverter
     {
-        public string InvertImage(string uploadedPhoto);
+        public Bitmap InvertImage(string uploadedPhoto);
         //public string HalfTone(Bitmap invertPhoto);
-        public Bitmap DoDithering(Bitmap input);
+        public string DoDithering(Bitmap photo);
         public string Grouping(string halfTonePhoto);
         public bool SaveImage(string ImgStr);
 
