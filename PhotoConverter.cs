@@ -146,33 +146,33 @@ namespace PortraitBoxPhotoConverter
                     {
                         if (p.R > 64)
                         {
-                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
                         }
-                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
                     }
                     if (x % 2 == 0 && y % 2 != 0)
                     {
                         if (p.R > 128)
                         {
-                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
                         }
-                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
                     }
                     if (x % 2 != 0 && y % 2 == 0)
                     {
                         if (p.R > 192)
                         {
-                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
                         }
-                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
                     }
                     if (x % 2 != 0 && y % 2 != 0)
                     {
                         if (p.R > 64)
                         {
-                            photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
+                            photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
                         }
-                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 255, 255, 255));
+                        else photo.SetPixel(x, y, Color.FromArgb(p.A, 000, 000, 000));
                     }
                 }
             }
